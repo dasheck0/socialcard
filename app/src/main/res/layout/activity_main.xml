@@ -13,6 +13,168 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/background"
+        android:src="@drawable/background2"
         android:scaleType="centerCrop" />
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardView"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="24dp"
+        card_view:cardBackgroundColor="#23b8c3"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/headerContainer"
+                android:layout_alignParentTop="false"
+                android:layout_marginLeft="72dp"
+                android:layout_marginRight="16dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_navigation_close"
+                    android:layout_alignParentRight="true"
+                    android:background="?android:selectableItemBackground"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/navigationContainer"
+                android:layout_below="@+id/headerContainer"
+                android:layout_alignLeft="@+id/headerContainer"
+                android:layout_alignRight="@+id/headerContainer"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:text="My"
+                                        style="@style/Base.TextAppearance.AppCompat.Display3"
+                                        android:textStyle="bold"
+                                        android:gravity="bottom"
+                                        android:textColor="@color/abc_secondary_text_material_dark" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:text="DRIBBLE."
+                                        style="@style/Base.TextAppearance.AppCompat.Display2"
+                                        android:gravity="top"
+                                        android:textColor="@color/abc_secondary_text_material_dark" />
+
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+                                    android:textColor="@color/abc_secondary_text_material_dark"
+                                    android:layout_marginRight="16dp" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4">
+
+                                <Button
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="36dp"
+                                    android:text="SEE MORE"
+                                    android:textColor="@color/abc_secondary_text_material_dark"
+                                    android:background="@drawable/button_background"/>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"></RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/navigationContainer"
+                android:layout_alignLeft="@+id/headerContainer"
+                android:layout_alignRight="@+id/headerContainer"
+                android:layout_above="@+id/footerContainer">
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/footerContainer"
+                android:layout_alignParentBottom="true"
+                android:layout_alignLeft="@+id/headerContainer"
+                android:layout_alignRight="@+id/headerContainer">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:text="Contact me on stefan@rpdev.net"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/abc_secondary_text_material_dark"
+                    style="@style/TextAppearance.AppCompat.Body2" />
+            </RelativeLayout>
+            
+        </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
 </RelativeLayout>
