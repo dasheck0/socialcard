@@ -15,11 +15,13 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import butterknife.OnClick;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.daimajia.androidanimations.library.sliders.SlideInRightAnimator;
 import com.dasheck.socialcard.R;
 
+import com.dasheck.socialcard.controllers.WebController;
 import com.dasheck.socialcard.models.SocialData;
 import com.dasheck.socialcard.utilities.Utilities;
 import com.nineoldandroids.animation.Animator;
@@ -40,6 +42,8 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
   private int cx;
   private int cy;
   private SocialData socialData;
+
+  private WebController webController;
 
   @Bind(R.id.container) View container;
   @Bind(R.id.captionTextView) TextView captionTextView;
@@ -74,6 +78,8 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
     super.onViewCreated(view, savedInstanceState);
     unpackBundle();
 
+    webController = new WebController(getActivity());
+
     captionTextView.setText(socialData.getCaption());
     bodyTextView.setText(socialData.getBody());
     imageView.setImageBitmap(Utilities.getBitmapFromAsset(getActivity(), socialData.getResourceFilename()));
@@ -96,6 +102,10 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
     ButterKnife.unbind(this);
   }
 
+  @OnClick(R.id.seeMoreButton) public void onseeMoreButtonClicked(View view) {
+    webController.openWebsite(socialData.getUrl());
+  }
+  
   @Override
   public void onAnimationStart() {
 

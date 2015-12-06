@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="SEE MORE"
-                android:id="@+id/button3" android:layout_below="@+id/bodyTextView"
+                android:id="@+id/seeMoreButton" android:layout_below="@+id/bodyTextView"
                 android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
                 android:background="@drawable/button_background" android:layout_marginTop="16dp"
                 android:textColor="@color/abc_primary_text_material_dark"/>
