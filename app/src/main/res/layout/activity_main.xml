@@ -36,9 +36,8 @@
           android:layout_height="match_parent"
           android:layout_above="@+id/navigationContainer"
           android:layout_below="@+id/headerContainer"
-          android:layout_alignLeft="@+id/headerContainer"
-          android:layout_alignRight="@+id/headerContainer"
-          >
+          android:id="@+id/actitivityContentContainer" android:layout_marginLeft="72dp"
+          android:layout_marginRight="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -148,8 +147,8 @@
           android:layout_height="48dp"
           android:id="@+id/headerContainer"
           android:layout_alignParentTop="false"
-          android:layout_marginLeft="72dp"
-          android:layout_marginRight="16dp">
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp" android:layout_marginTop="16dp">
 
         <com.andexert.library.RippleView
             xmlns:ripple="http://schemas.android.com/apk/res-auto"
@@ -174,9 +173,8 @@
           android:layout_width="match_parent"
           android:layout_height="48dp"
           android:id="@+id/navigationContainer"
-          android:layout_alignLeft="@+id/headerContainer"
-          android:layout_alignRight="@+id/headerContainer"
-          android:layout_above="@+id/footerContainer">
+          android:layout_above="@+id/footerContainer" android:layout_marginLeft="72dp"
+          android:layout_marginRight="16dp">
 
         <LinearLayout android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -201,8 +199,8 @@
           android:layout_height="48dp"
           android:id="@+id/footerContainer"
           android:layout_alignParentBottom="true"
-          android:layout_alignLeft="@+id/headerContainer"
-          android:layout_alignRight="@+id/headerContainer">
+          android:layout_marginLeft="72dp" android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -210,7 +208,7 @@
             android:text="Contact me on stefan@rpdev.net"
             android:gravity="center_vertical|right"
             android:textColor="@color/abc_secondary_text_material_dark"
-            style="@style/TextAppearance.AppCompat.Body2"/>
+            style="@style/TextAppearance.AppCompat.Body2" android:layout_marginRight="16dp"/>
       </RelativeLayout>
 
       <RelativeLayout

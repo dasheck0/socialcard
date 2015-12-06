@@ -1,7 +1,6 @@
 package com.dasheck.socialcard;
 
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
@@ -68,10 +67,10 @@ public class MainActivity extends AppCompatActivity
         SocialCardFragment.newInstance(
             Utilities.bundleFrom(currentTouchPosition.first, currentTouchPosition.second, socialData));
     addFragment(fragment, socialDataId);
-    hightlightButton((ImageView) findViewById(buttonId), color);
+    highlightSocialButton((ImageView) findViewById(buttonId), color);
   }
 
-  private void hightlightButton(ImageView button, int color) {
+  private void highlightSocialButton(ImageView button, int color) {
     for (ImageView socialButton : socialButtons) {
       socialButton.setColorFilter(Color.WHITE);
       socialButton.setEnabled(true);
