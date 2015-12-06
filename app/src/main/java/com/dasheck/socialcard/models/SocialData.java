@@ -9,15 +9,15 @@ public class SocialData {
 
   @Expose private String caption;
   @Expose private String body;
-  @Expose private int resourceId;
+  @Expose private String resourceFilename;
   @Expose private Color color;
   @Expose private String url;
 
-  public SocialData(String caption, String body, int resourceId,
+  public SocialData(String caption, String body, String resourceFilename,
       Color color, String url) {
     this.caption = caption;
     this.body = body;
-    this.resourceId = resourceId;
+    this.resourceFilename = resourceFilename;
     this.color = color;
     this.url = url;
   }
@@ -41,12 +41,12 @@ public class SocialData {
     this.body = body;
   }
 
-  public int getResourceId() {
-    return resourceId;
+  public String getResourceFilename() {
+    return resourceFilename;
   }
 
-  public void setResourceId(int resourceId) {
-    this.resourceId = resourceId;
+  public void setResourceFilename(String resourceFilename) {
+    this.resourceFilename = resourceFilename;
   }
 
   public Color getColor() {

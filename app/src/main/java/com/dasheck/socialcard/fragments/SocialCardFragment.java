@@ -20,6 +20,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.daimajia.androidanimations.library.sliders.SlideInRightAnimator;
 import com.dasheck.socialcard.R;
 
+import com.dasheck.socialcard.models.SocialData;
 import com.dasheck.socialcard.utilities.Utilities;
 import com.nineoldandroids.animation.Animator;
 import java.util.Random;
@@ -38,17 +39,13 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
 
   private int cx;
   private int cy;
-  private String caption;
-  private String body;
-  private int resourceId;
-  private int backgroundColor;
+  private SocialData socialData;
 
   @Bind(R.id.container) View container;
   @Bind(R.id.captionTextView) TextView captionTextView;
   @Bind(R.id.bodyTextView) TextView bodyTextView;
   @Bind(R.id.imageView) ImageView imageView;
   @Bind(R.id.shadowContainer) View shadowContainer;
-
 
   private LayoutRevealListener revealListener;
 
@@ -77,13 +74,13 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
     super.onViewCreated(view, savedInstanceState);
     unpackBundle();
 
-    captionTextView.setText(caption);
-    bodyTextView.setText(body);
-    imageView.setImageResource(resourceId);
+    captionTextView.setText(socialData.getCaption());
+    bodyTextView.setText(socialData.getBody());
+    imageView.setImageBitmap(Utilities.getBitmapFromAsset(getActivity(), socialData.getResourceFilename()));
 
     shadowContainer.setVisibility(View.INVISIBLE);
 
-    container.setBackgroundColor(backgroundColor);
+    container.setBackgroundColor(Utilities.toAndroidColor(socialData.getColor()));
     container.getViewTreeObserver()
         .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
           @Override
@@ -177,9 +174,13 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
 
     cx = args.getInt(Utilities.BUNDLE_KEY_CX);
     cy = args.getInt(Utilities.BUNDLE_KEY_CY);
-    caption = args.getString(Utilities.BUNDLE_KEY_CAPTION);
-    body = args.getString(Utilities.BUNDLE_KEY_TEXT);
-    resourceId = args.getInt(Utilities.BUNDLE_KEY_RESOURCE_ID);
-    backgroundColor = args.getInt(Utilities.BUNDLE_KEY_BACKGROUND_COLOR);
+
+    String caption = args.getString(Utilities.BUNDLE_KEY_CAPTION);
+    String body = args.getString(Utilities.BUNDLE_KEY_TEXT);
+    String resourceFilename = args.getString(Utilities.BUNDLE_KEY_RESOURCE_ID);
+    int backgroundColor = args.getInt(Utilities.BUNDLE_KEY_BACKGROUND_COLOR);
+    String url = args.getString(Utilities.BUNDLE_KEY_URL);
+
+    socialData = new SocialData(caption, body, resourceFilename, Utilities.toColor(backgroundColor), url);
   }
 }

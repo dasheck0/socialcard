@@ -2,7 +2,7 @@
   "twitter" : {
     "caption" : "TWITTER.",
     "body" : "Twitter body",
-    "resourceId" : 0,
+    "resourceFilename" : "images/background.jpg",
     "color" : {
       "a" : 255,
       "r" : 85,
@@ -14,7 +14,7 @@
   "github" : {
     "caption" : "GITHUB.",
     "body" : "Github body",
-    "resourceId" : 0,
+    "resourceFilename" : "images/background2.jpg",
     "color" : {
       "a" : 255,
       "r" : 32,
