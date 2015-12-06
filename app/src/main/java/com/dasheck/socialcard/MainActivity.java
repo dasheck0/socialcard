@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
   Fragment currentFrament;
   Fragment previousFragment;
 
-  @Bind({ R.id.twitterButton, R.id.githubButton }) List<ImageView> socialButtons;
+  @Bind({R.id.twitterButton, R.id.githubButton}) List<ImageView> socialButtons;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +46,24 @@ public class MainActivity extends AppCompatActivity
   }
 
   @OnClick(R.id.githubButton) public void onGithubButtonClicked(View view) {
+    int color = Color.argb(255, 32, 32, 32);
     SocialCardFragment fragment =
         SocialCardFragment.newInstance(
             Utilities.bundleFrom(currentTouchPosition.first, currentTouchPosition.second, "GITHUB.",
-                "this is a sample text", R.drawable.background, Color.argb(255, 229, 76, 133)
-            ));
+                "this is a sample text", R.drawable.background, color));
     addFragment(fragment, "github");
-    hightlightButton((ImageView) findViewById(R.id.githubButton), Color.argb(255, 229, 76, 133));
+    hightlightButton((ImageView) findViewById(R.id.githubButton), color);
   }
 
   @OnClick(R.id.twitterButton) public void onTwitterButtonClicked(View view) {
+    int color = Color.argb(255, 85, 172, 238);
     SocialCardFragment fragment =
         SocialCardFragment.newInstance(
-            Utilities.bundleFrom(currentTouchPosition.first, currentTouchPosition.second, "TWITTER.",
-                "this is a sample text but a little longer", R.drawable.background2, Color.argb(255, 26, 112, 249)
-            ));
+            Utilities.bundleFrom(currentTouchPosition.first, currentTouchPosition.second,
+                "TWITTER.", "this is a sample text but a little longer", R.drawable.background2,
+                color));
     addFragment(fragment, "twitter");
-    hightlightButton((ImageView) findViewById(R.id.twitterButton), Color.argb(255, 26, 112, 249));
+    hightlightButton((ImageView) findViewById(R.id.twitterButton), color);
   }
 
   private void hightlightButton(ImageView button, int color) {

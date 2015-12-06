@@ -81,6 +81,8 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
     bodyTextView.setText(body);
     imageView.setImageResource(resourceId);
 
+    shadowContainer.setVisibility(View.INVISIBLE);
+
     container.setBackgroundColor(backgroundColor);
     container.getViewTreeObserver()
         .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -108,27 +110,7 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
       revealListener.reavealAnimationEnd();
     }
 
-    YoYo.with(Techniques.SlideInRight)
-        .duration(300)
-        .withListener(new Animator.AnimatorListener() {
-          @Override public void onAnimationStart(Animator animation) {
-            animation.setInterpolator(new OvershootInterpolator());
-            shadowContainer.setVisibility(View.VISIBLE);
-          }
-
-          @Override public void onAnimationEnd(Animator animation) {
-
-          }
-
-          @Override public void onAnimationCancel(Animator animation) {
-
-          }
-
-          @Override public void onAnimationRepeat(Animator animation) {
-
-          }
-        })
-        .playOn(shadowContainer);
+    animateImage();
   }
 
   @Override
@@ -164,6 +146,30 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
 
       animator.addListener(this);
     }
+  }
+
+  private void animateImage() {
+    YoYo.with(Techniques.SlideInRight)
+        .duration(300)
+        .withListener(new Animator.AnimatorListener() {
+          @Override public void onAnimationStart(Animator animation) {
+            animation.setInterpolator(new OvershootInterpolator());
+            shadowContainer.setVisibility(View.VISIBLE);
+          }
+
+          @Override public void onAnimationEnd(Animator animation) {
+
+          }
+
+          @Override public void onAnimationCancel(Animator animation) {
+
+          }
+
+          @Override public void onAnimationRepeat(Animator animation) {
+
+          }
+        })
+        .playOn(shadowContainer);
   }
 
   private void unpackBundle() {

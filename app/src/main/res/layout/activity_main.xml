@@ -23,7 +23,7 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       card_view:cardCornerRadius="4dp"
-      card_view:cardElevation="24dp"
+      card_view:cardElevation="12dp"
       card_view:cardBackgroundColor="#23b8c3"
       android:layout_margin="64dp">
 
