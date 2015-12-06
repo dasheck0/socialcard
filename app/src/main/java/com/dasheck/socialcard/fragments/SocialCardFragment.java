@@ -11,11 +11,17 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+import android.view.animation.BounceInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+import com.daimajia.androidanimations.library.sliders.SlideInRightAnimator;
 import com.dasheck.socialcard.R;
 
 import com.dasheck.socialcard.utilities.Utilities;
+import com.nineoldandroids.animation.Animator;
 import java.util.Random;
 
 import butterknife.Bind;
@@ -41,6 +47,8 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
   @Bind(R.id.captionTextView) TextView captionTextView;
   @Bind(R.id.bodyTextView) TextView bodyTextView;
   @Bind(R.id.imageView) ImageView imageView;
+  @Bind(R.id.shadowContainer) View shadowContainer;
+
 
   private LayoutRevealListener revealListener;
 
@@ -99,6 +107,28 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
     if (revealListener != null) {
       revealListener.reavealAnimationEnd();
     }
+
+    YoYo.with(Techniques.SlideInRight)
+        .duration(700)
+        .withListener(new Animator.AnimatorListener() {
+          @Override public void onAnimationStart(Animator animation) {
+            animation.setInterpolator(new OvershootInterpolator());
+            shadowContainer.setVisibility(View.VISIBLE);
+          }
+
+          @Override public void onAnimationEnd(Animator animation) {
+
+          }
+
+          @Override public void onAnimationCancel(Animator animation) {
+
+          }
+
+          @Override public void onAnimationRepeat(Animator animation) {
+
+          }
+        })
+        .playOn(shadowContainer);
   }
 
   @Override
