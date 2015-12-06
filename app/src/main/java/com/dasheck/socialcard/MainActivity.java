@@ -5,19 +5,16 @@ import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 
-import com.dasheck.socialcard.fragments.test;
+import com.dasheck.socialcard.fragments.SocialCardFragment;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
 
-public class MainActivity extends AppCompatActivity implements test.LayoutRevealListener {
+public class MainActivity extends AppCompatActivity implements SocialCardFragment.LayoutRevealListener {
 
     Pair<Integer, Integer> currentTouchPosition;
 
@@ -44,18 +41,18 @@ public class MainActivity extends AppCompatActivity implements test.LayoutReveal
     @OnClick(R.id.button) public void onFirstClicked(View view) {
         Log.d("TAG", "Button: Touch position: " + currentTouchPosition.first + ", " + currentTouchPosition.second);
 
-        test fragment = test.newInstance(currentTouchPosition.first, currentTouchPosition.second);
+        SocialCardFragment fragment = SocialCardFragment.newInstance(currentTouchPosition.first, currentTouchPosition.second);
         addFragment(fragment, "Button");
     }
 
     @OnClick(R.id.button2) public void onSecondClicked(View view) {
         Log.d("TAG", "Button2: Touch position: " + currentTouchPosition.first + ", " + currentTouchPosition.second);
 
-        test fragment = test.newInstance(currentTouchPosition.first, currentTouchPosition.second);
+        SocialCardFragment fragment = SocialCardFragment.newInstance(currentTouchPosition.first, currentTouchPosition.second);
         addFragment(fragment, "Button2");
     }
 
-    private void addFragment(test fragment, String tag) {
+    private void addFragment(SocialCardFragment fragment, String tag) {
         if(currentFrament == null || !tag.equals(currentFrament.getTag())) {
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit();
 

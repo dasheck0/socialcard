@@ -5,15 +5,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.ViewUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.OvershootInterpolator;
 
 import com.dasheck.socialcard.R;
 
@@ -24,7 +21,7 @@ import butterknife.ButterKnife;
 import io.codetail.animation.SupportAnimator;
 import io.codetail.animation.ViewAnimationUtils;
 
-public class test extends Fragment implements SupportAnimator.AnimatorListener {
+public class SocialCardFragment extends Fragment implements SupportAnimator.AnimatorListener {
 
     private static final String BUNDLE_CX_KEY = "cxKey";
     private static final String BUNDLE_CY_KEY = "cyKey";
@@ -46,8 +43,8 @@ public class test extends Fragment implements SupportAnimator.AnimatorListener {
         this.revealListener = revealListener;
     }
 
-    public static test newInstance(int x, int y) {
-        test fragment = new test();
+    public static SocialCardFragment newInstance(int x, int y) {
+        SocialCardFragment fragment = new SocialCardFragment();
 
         Bundle args = new Bundle();
         args.putInt(BUNDLE_CX_KEY, x);
@@ -59,7 +56,7 @@ public class test extends Fragment implements SupportAnimator.AnimatorListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_test, container, false);
+        View view = inflater.inflate(R.layout.fragment_social_card, container, false);
         ButterKnife.bind(this, view);
 
         return view;
