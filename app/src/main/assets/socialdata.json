@@ -1,0 +1,26 @@
+{
+  "twitter" : {
+    "caption" : "TWITTER.",
+    "body" : "Twitter body",
+    "resourceId" : 0,
+    "color" : {
+      "a" : 255,
+      "r" : 85,
+      "g" : 172,
+      "b" : 238
+    },
+    "url" : "https://twitter.com/dasheck"
+  },
+  "github" : {
+    "caption" : "GITHUB.",
+    "body" : "Github body",
+    "resourceId" : 0,
+    "color" : {
+      "a" : 255,
+      "r" : 32,
+      "g" : 32,
+      "b" : 33
+    },
+    "url" : "https://github.com/dasheck0"
+  }
+}

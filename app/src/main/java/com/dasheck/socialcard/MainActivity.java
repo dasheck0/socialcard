@@ -12,16 +12,20 @@ import android.view.View;
 
 import android.widget.ImageView;
 import butterknife.Bind;
+import com.dasheck.socialcard.controllers.SocialDataController;
 import com.dasheck.socialcard.fragments.SocialCardFragment;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
+import com.dasheck.socialcard.models.SocialData;
 import com.dasheck.socialcard.utilities.Utilities;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
     implements SocialCardFragment.LayoutRevealListener {
+
+  private SocialDataController socialDataController;
 
   Pair<Integer, Integer> currentTouchPosition;
 
@@ -35,6 +39,9 @@ public class MainActivity extends AppCompatActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
+
+    socialDataController = new SocialDataController(this);
+    socialDataController.loadSocialData();
   }
 
   @OnTouch(R.id.clickContainer) public boolean onButtonTouched(MotionEvent motionEvent) {
@@ -46,24 +53,22 @@ public class MainActivity extends AppCompatActivity
   }
 
   @OnClick(R.id.githubButton) public void onGithubButtonClicked(View view) {
-    int color = Color.argb(255, 32, 32, 32);
-    SocialCardFragment fragment =
-        SocialCardFragment.newInstance(
-            Utilities.bundleFrom(currentTouchPosition.first, currentTouchPosition.second, "GITHUB.",
-                "this is a sample text", R.drawable.background, color));
-    addFragment(fragment, "github");
-    hightlightButton((ImageView) findViewById(R.id.githubButton), color);
+    prepareFragment(SocialDataController.GITHUB, R.id.githubButton);
   }
 
   @OnClick(R.id.twitterButton) public void onTwitterButtonClicked(View view) {
-    int color = Color.argb(255, 85, 172, 238);
+    prepareFragment(SocialDataController.TWITTER, R.id.twitterButton);
+  }
+
+  private void prepareFragment(String socialDataId, int buttonId) {
+    SocialData socialData = socialDataController.getSocialDataFor(socialDataId);
+    int color = Utilities.toAndroidColor(socialData.getColor());
+
     SocialCardFragment fragment =
         SocialCardFragment.newInstance(
-            Utilities.bundleFrom(currentTouchPosition.first, currentTouchPosition.second,
-                "TWITTER.", "this is a sample text but a little longer", R.drawable.background2,
-                color));
-    addFragment(fragment, "twitter");
-    hightlightButton((ImageView) findViewById(R.id.twitterButton), color);
+            Utilities.bundleFrom(currentTouchPosition.first, currentTouchPosition.second, socialData));
+    addFragment(fragment, socialDataId);
+    hightlightButton((ImageView) findViewById(buttonId), color);
   }
 
   private void hightlightButton(ImageView button, int color) {
