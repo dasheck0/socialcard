@@ -109,7 +109,7 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
     }
 
     YoYo.with(Techniques.SlideInRight)
-        .duration(700)
+        .duration(300)
         .withListener(new Animator.AnimatorListener() {
           @Override public void onAnimationStart(Animator animation) {
             animation.setInterpolator(new OvershootInterpolator());
