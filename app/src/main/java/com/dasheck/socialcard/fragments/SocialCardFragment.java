@@ -11,8 +11,11 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.dasheck.socialcard.R;
 
+import com.dasheck.socialcard.utilities.Utilities;
 import java.util.Random;
 
 import butterknife.Bind;
@@ -26,12 +29,18 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
   private static final String BUNDLE_CY_KEY = "cyKey";
 
   private boolean revealed = false;
+
   private int cx;
   private int cy;
+  private String caption;
+  private String body;
+  private int resourceId;
+  private int backgroundColor;
 
   @Bind(R.id.container) View container;
-  @Bind(R.id.first) View first;
-  @Bind(R.id.second) View second;
+  @Bind(R.id.captionTextView) TextView captionTextView;
+  @Bind(R.id.bodyTextView) TextView bodyTextView;
+  @Bind(R.id.imageView) ImageView imageView;
 
   private LayoutRevealListener revealListener;
 
@@ -39,13 +48,9 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
     this.revealListener = revealListener;
   }
 
-  public static SocialCardFragment newInstance(int x, int y) {
+  public static SocialCardFragment newInstance(Bundle bundle) {
     SocialCardFragment fragment = new SocialCardFragment();
-
-    Bundle args = new Bundle();
-    args.putInt(BUNDLE_CX_KEY, x);
-    args.putInt(BUNDLE_CY_KEY, y);
-    fragment.setArguments(args);
+    fragment.setArguments(bundle);
 
     return fragment;
   }
@@ -62,15 +67,14 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    unpackBundle();
 
-    Bundle args = getArguments();
-    cx = args.getInt(BUNDLE_CX_KEY);
-    cy = args.getInt(BUNDLE_CY_KEY);
+    captionTextView.setText(caption);
+    bodyTextView.setText(body);
+    imageView.setImageResource(resourceId);
 
-    first.setBackgroundColor(randomColor());
-    second.setBackgroundColor(randomColor());
-
-    first.getViewTreeObserver()
+    container.setBackgroundColor(backgroundColor);
+    container.getViewTreeObserver()
         .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
           @Override
           public void onGlobalLayout() {
@@ -93,7 +97,7 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
   @Override
   public void onAnimationEnd() {
     if (revealListener != null) {
-      revealListener.reavealAnimationEnd(this);
+      revealListener.reavealAnimationEnd();
     }
   }
 
@@ -109,7 +113,7 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
 
   public interface LayoutRevealListener {
 
-    void reavealAnimationEnd(Fragment fragment);
+    void reavealAnimationEnd();
   }
 
   void reveal() {
@@ -132,12 +136,14 @@ public class SocialCardFragment extends Fragment implements SupportAnimator.Anim
     }
   }
 
-  static int randomColor() {
-    Random random = new Random();
-    return Color.HSVToColor(new float[] {
-        random.nextInt(360),
-        0.70f,
-        0.70f
-    });
+  private void unpackBundle() {
+    Bundle args = getArguments();
+
+    cx = args.getInt(Utilities.BUNDLE_KEY_CX);
+    cy = args.getInt(Utilities.BUNDLE_KEY_CY);
+    caption = args.getString(Utilities.BUNDLE_KEY_CAPTION);
+    body = args.getString(Utilities.BUNDLE_KEY_TEXT);
+    resourceId = args.getInt(Utilities.BUNDLE_KEY_RESOURCE_ID);
+    backgroundColor = args.getInt(Utilities.BUNDLE_KEY_BACKGROUND_COLOR);
   }
 }

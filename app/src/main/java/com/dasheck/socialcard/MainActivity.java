@@ -1,5 +1,6 @@
 package com.dasheck.socialcard;
 
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import com.dasheck.socialcard.fragments.SocialCardFragment;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
+import com.dasheck.socialcard.utilities.Utilities;
 
 public class MainActivity extends AppCompatActivity
     implements SocialCardFragment.LayoutRevealListener {
@@ -39,13 +41,19 @@ public class MainActivity extends AppCompatActivity
 
   @OnClick(R.id.button) public void onFirstClicked(View view) {
     SocialCardFragment fragment =
-        SocialCardFragment.newInstance(currentTouchPosition.first, currentTouchPosition.second);
+        SocialCardFragment.newInstance(
+            Utilities.bundleFrom(currentTouchPosition.first, currentTouchPosition.second, "DRIBBLE",
+                "this is a sample text", R.drawable.background, Color.argb(255, 229, 76, 133)
+            ));
     addFragment(fragment, "Button");
   }
 
   @OnClick(R.id.button2) public void onSecondClicked(View view) {
     SocialCardFragment fragment =
-        SocialCardFragment.newInstance(currentTouchPosition.first, currentTouchPosition.second);
+        SocialCardFragment.newInstance(
+            Utilities.bundleFrom(currentTouchPosition.first, currentTouchPosition.second, "BEHANCE",
+                "this is a sample text but a little longer", R.drawable.background2, Color.argb(255, 26, 112, 249)
+            ));
     addFragment(fragment, "Button2");
   }
 
@@ -69,7 +77,7 @@ public class MainActivity extends AppCompatActivity
   }
 
   @Override
-  public void reavealAnimationEnd(Fragment fragment) {
+  public void reavealAnimationEnd() {
     if (previousFragment != null) {
       getSupportFragmentManager().beginTransaction().remove(previousFragment).commit();
     }
